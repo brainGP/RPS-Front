@@ -30,11 +30,12 @@ export default function ResultPage() {
         <p className="text-3xl mt-4">Та гаргасан хуруу: {finger}</p>
 
         <div className="mt-8 flex flex-col gap-4">
-          <PrimaryButton
-            label="Дахин тоглох"
-            variant="green"
-            onClick={() => router.push("/game")}
-          />
+        <PrimaryButton
+  label="Дахин тоглох"
+  variant="green"
+  onClick={() => setTimeout(() => router.push("/game"), 50)}
+/>
+
           <button
             className="w-full px-4 py-3 rounded-xl border border-zinc-700 text-white bg-zinc-800 hover:bg-zinc-700 transition"
             onClick={() => router.push("/")}

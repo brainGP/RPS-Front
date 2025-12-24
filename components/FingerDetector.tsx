@@ -201,12 +201,23 @@ const FingerDetector: React.FC<FingerDetectorProps> = ({ onFingerCount }) => {
 
    // At the end of your useEffect cleanup
 return () => {
-  if (animationFrameRef.current) cancelAnimationFrame(animationFrameRef.current);
-  if (handLandmarkerRef.current) handLandmarkerRef.current.close();
-  if (videoRef.current?.srcObject) {
-    (videoRef.current.srcObject as MediaStream).getTracks().forEach((t) => t.stop());
-  }
-};
+    // STOP animation
+    if (animationFrameRef.current) cancelAnimationFrame(animationFrameRef.current);
+
+    // CLOSE handLandmarker
+    if (handLandmarkerRef.current) {
+      handLandmarkerRef.current.close();
+      handLandmarkerRef.current = null;
+    }
+
+    // STOP video stream
+    if (videoRef.current?.srcObject) {
+      (videoRef.current.srcObject as MediaStream)
+        .getTracks()
+        .forEach((track) => track.stop());
+      videoRef.current.srcObject = null;
+    }
+  };
 
   }, []);
 
