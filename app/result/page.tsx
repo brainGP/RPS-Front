@@ -8,18 +8,7 @@ export default function ResultPage() {
   const router = useRouter();
 
   const status = params.get("status"); // win | lose | draw | unbeatable
-  const finger = params.get("finger");
-
-  const fingerEmojis: Record<string, string> = {
-    "эрхий": "Эрхий",
-    "долоовор": "Долоовор",
-    "дунд": "Дунд",
-    "ядам": "Ядам",
-    "чигчий": "Чигчий",
-    "None": "❓",
-  };
-
-  const fingerDisplay = finger ? fingerEmojis[finger.toLowerCase()] || finger : "❓";
+  const finger = params.get("finger") || "None";
 
   const getResultText = () => {
     switch (status) {
@@ -38,7 +27,7 @@ export default function ResultPage() {
       <div className="w-full max-w-md p-8 rounded-2xl border border-zinc-700 bg-zinc-900/70 text-center shadow-[0_0_40px_rgba(0,255,150,0.15)]">
         <h1 className={`text-5xl font-extrabold mb-4 ${colorClass}`}>{title}</h1>
         {subtitle && <p className="text-zinc-300 mb-2">{subtitle}</p>}
-        <p className="text-3xl mt-4">Та гаргасан хуруу: {fingerDisplay}</p>
+        <p className="text-3xl mt-4">Та гаргасан хуруу: {finger}</p>
 
         <div className="mt-8 flex flex-col gap-4">
           <PrimaryButton
